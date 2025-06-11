@@ -3,6 +3,10 @@ var express = require('express');
 var app = express();
 var cors = require('cors');
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
+
 app.use(cors({ optionsSuccessStatus: 200 }));
 app.use(express.static('public'));
 
@@ -13,6 +17,8 @@ app.get('/', function (req, res) {
 app.get('/api/hello', function (req, res) {
   res.json({ greeting: 'hello API' });
 });
+
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // ✅ NUEVA RUTA PARA LA ACTIVIDAD
 app.get('/api/whoami', function (req, res) {

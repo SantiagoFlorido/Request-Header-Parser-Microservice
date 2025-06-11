@@ -1,0 +1,42 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Request Header Parser Microservice",
+    "description": "Este microservicio devuelve la dirección IP, el idioma y el software del cliente a través de los encabezados de la solicitud.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/api/whoami": {
+      "get": {
+        "summary": "Obtener información del encabezado del cliente",
+        "description": "Devuelve la IP, el idioma y el software del cliente basándose en los encabezados de la solicitud.",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Respuesta exitosa con la información del cliente",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ipaddress": {
+                  "type": "string",
+                  "example": "::ffff:127.0.0.1"
+                },
+                "language": {
+                  "type": "string",
+                  "example": "es-ES,es;q=0.9"
+                },
+                "software": {
+                  "type": "string",
+                  "example": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
